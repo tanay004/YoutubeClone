@@ -1,0 +1,16 @@
+.parcel-cache
+node_modules
+dist
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
