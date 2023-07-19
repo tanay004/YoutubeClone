@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import { openMenu } from "./util/appSlice";
 import { useDispatch } from "react-redux";
 import { YT_API_URL } from "./util/config";
+import { setAllVideos, setAllVideos2 } from "./util/videoSlice";
+import { useSelector } from "react-redux";
 
 const MainContainer = () => {
-    const [videos, setVideos] = useState([]);
     const dispatch = useDispatch();
+    const allVideos = useSelector(store => store.videos.vids2);
+    
     useEffect(()=>{
         getVideoData();
         dispatch(openMenu());
@@ -17,14 +20,16 @@ const MainContainer = () => {
     async function getVideoData(){
         const data = await fetch(YT_API_URL);
         const json = await data.json();
-        setVideos(json.items);
+        dispatch(setAllVideos(json.items));
+        dispatch(setAllVideos2(json.items));
         
     }
-    if(!videos) return null;
-
-    return (videos?.length===0)? (<Shimmer/>) :(
+    
+    if(!allVideos) return null;
+    
+    return (allVideos?.length===0)? (<Shimmer/>) :(
         <div className="col-span-11 flex flex-wrap gap-7 pl-10 pt-6">
-            {videos.map((video,index)=>{
+            {allVideos.map((video,index)=>{
                 
                 return <Link to = {"/watch/"+ video.id } key={video.id}>
                     <VideoCard info={video}/>
