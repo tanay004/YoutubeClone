@@ -4,6 +4,7 @@ import { SIDE_BAR_LOGO_URL, USER_LOGO_URL, YOUTUBE_LOGO_URL, YT_SUGGEST_URL } fr
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "./util/appSlice";
 import { setAllVideos2 } from "./util/videoSlice";
+import { addToCache } from "./util/searchSlice";
 
 const Header = () => {
   const [searchText, setSearchText] = useState(""); 
@@ -11,6 +12,7 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(true);
   const dispatch = useDispatch();
   const allVideos = useSelector(store => store.videos.vids1);
+  const cachedResults = useSelector(store => store.search.cacheFiles);
 
   function handleClick(){
     dispatch(toggleMenu());
@@ -23,7 +25,15 @@ const Header = () => {
   }
 
   useEffect(()=>{
-    const timer = setTimeout(()=>getSuggestions(), 200)
+    const timer = setTimeout(()=>{
+      if(cachedResults[searchText]){
+        setSuggestions(cachedResults[searchText]);
+      }
+      else{
+        getSuggestions()
+      }
+      
+    }, 200);
     const handleScroll = ()=>{
       setShowSuggestions(false);
       document.getElementById("suggestion-input").blur();
@@ -39,15 +49,18 @@ const Header = () => {
     const data =await fetch(YT_SUGGEST_URL + searchText);
     const json = await data.json();
     setSuggestions(json[1]);
+    dispatch(addToCache({
+      [searchText] : json[1],
+    }))
   }
-
+  
   return (
       <div className='flex p-3 justify-between'>
         <div className='flex gap-4'>
           <img onClick={handleClick} className="h-6 mt-1 cursor-pointer" alt="Side bar logo" src={SIDE_BAR_LOGO_URL}/>
           <a href="/"><img className="h-16 -mt-4" alt="Youtube logo" src={YOUTUBE_LOGO_URL}/></a>
         </div>
-        <div>
+        <div className="flex">
           <input id="suggestion-input" spellCheck="false" 
             onChange={(e)=>setSearchText(e.target.value)} 
             className='border border-gray-300 p-4 h-10 w-[550px] rounded-l-3xl enabled:hover:border-gray-400'
@@ -63,7 +76,7 @@ const Header = () => {
           </div>}
           <button 
             onClick={()=> handleSearchClick()}
-            className="border border-gray-300 h-10 w-14 pl-4 relative top-[0.1rem] border-l-0 rounded-r-3xl bg-gray-50 hover:bg-gray-100"><BiSearch/>
+            className="border border-gray-300 h-10 w-14 pl-4  border-l-0 rounded-r-3xl bg-gray-50 hover:bg-gray-100"><BiSearch/>
             </button>
         </div>
         <img className="h-8 mr-10" alt="User logo" src={USER_LOGO_URL}/>  

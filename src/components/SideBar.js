@@ -4,6 +4,7 @@ import { AiFillHome, AiOutlineLike } from "react-icons/ai";
 import { MdSubscriptions, MdOutlineVideoLibrary,MdVideoSettings, MdOutlineWatchLater } from "react-icons/md";
 import { GoHistory } from "react-icons/go";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 
@@ -34,7 +35,7 @@ const SideBar = () => {
     ]
   return !isMenuOpen? null : (
     <div className='col-span-1 mt-2'>
-        <MenuItem title = "Home" icon= {<AiFillHome/>} />
+        <Link to="/"><MenuItem title = "Home" icon= {<AiFillHome/>} /></Link>
         <MenuItem title = "Subscriptions" icon = {<MdSubscriptions/>} /> 
         <div className='h-0.5 my-3 mx-3  bg-slate-100' ></div>
         {array1.map((item, index) => {    

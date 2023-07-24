@@ -6,3 +6,92 @@ export const YT_API_URL = "https://youtube.googleapis.com/youtube/v3/videos?maxR
 export const API_KEY = "AIzaSyCgtSm2_SoqjWd5d9IxgIRp64Wf3B0F4NA";
 
 export const YT_SUGGEST_URL = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const commentsData = [
+    {
+        name: "Tanay khandelwal",
+        text: "Amazing. So motivating. I loved it.",
+        replies:[
+
+        ]  
+    },
+    {
+        name: "Charu khandelwal",
+        text: "Please work on your content, I don't liek this",
+        replies:[
+
+        ]  
+    },
+    {
+        name: "Tanay khandelwal",
+        text: "Amazing. So motivating. I loved it.",
+        replies:[
+            {
+                name: "Charu khandelwal",
+                text: "Please work on your content, I don't liek this",
+                replies:[
+                    {
+                        name: "Charu khandelwal",
+                        text: "Please work on your content, I don't liek this",
+                        replies:[
+                            {
+                                name: "Charu khandelwal",
+                                text: "Please work on your content, I don't liek this",
+                                replies:[
+                                    {
+                                        name: "Charu khandelwal",
+                                        text: "Please work on your content, I don't liek this",
+                                        replies:[
+                                            {
+                                                name: "Rahul",
+                                                text: "Amazing. So motivating. I loved it.",
+                                                replies:[
+                                        
+                                                ]  
+                                            },
+                                        ]  
+                                    },
+                                    {
+                                        name: "Charu khandelwal",
+                                        text: "Please work on your content, I don't liek this",
+                                        replies:[
+                                
+                                        ]  
+                                    },
+                                ]  
+                            },
+                        ]  
+                    },
+                    {
+                        name: "Charu khandelwal",
+                        text: "Please work on your content, I don't liek this",
+                        replies:[
+                
+                        ]  
+                    },
+                ]  
+            },
+            {
+                name: "Charu khandelwal",
+                text: "Please work on your content, I don't liek this",
+                replies:[
+        
+                ]  
+            },
+        ]  
+    },
+    {
+        name: "Charu khandelwal",
+        text: "Please work on your content, I don't liek this",
+        replies:[
+
+        ]  
+    },
+    {
+        name: "Rahul",
+        text: "Amazing. So motivating. I loved it.",
+        replies:[
+
+        ]  
+    },
+]

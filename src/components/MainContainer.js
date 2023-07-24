@@ -31,7 +31,7 @@ const MainContainer = () => {
         <div className="col-span-11 flex flex-wrap gap-7 pl-10 pt-6">
             {allVideos.map((video,index)=>{
                 
-                return <Link to = {"/watch/"+ video.id } key={video.id}>
+                return <Link to = {"/watch/"+ video.id } key={video.id} state={video}>
                     <VideoCard info={video}/>
                 </Link>
             })}
